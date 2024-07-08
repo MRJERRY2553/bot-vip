@@ -2,7 +2,7 @@ module.exports.config = {
   name: "pairv8",
   version: "1.0.0", 
   hasPermssion: 0,
-  credits: "RAHAT",
+  credits: "𝗥𝗞𝗢 𝗕𝗥𝗢",
   description: "Pairing",
   commandCategory: "Love", 
   usages: "pair", 
@@ -41,6 +41,6 @@ module.exports.run = async function({ api, event,Threads, Users }) {
 
         var msg = {body: `*┏━━ೋ•  •ೋ━━┓*
    🎉 Congratulations  🎉
-*┗━━ೋ•  •ೋ━━┛*\n𝗖𝗵𝗮𝗹𝗼 𝗔𝗯 𝗘𝗸 𝗱𝗼𝘀𝗿𝗬 𝗞𝗼 𝗣𝗿𝗼𝗽𝗼𝘀𝗲 𝗸𝗥𝗼 𝗦𝗵𝗮𝗯𝗮𝘀𝗛🙁𝙊𝙬𝙣𝙚𝙧  \n `+namee+"\n "+"💙"+" "+name, mentions: arraytag, attachment: imglove}
+*┗━━ೋ•  •ೋ━━┛*\n𝗟𝗮 𝗮𝗯𝗮 1𝗹𝗲 𝗮𝗿𝗸𝗮 𝗹𝗮𝗶 𝗣𝗿𝗼𝗽𝗼𝘀𝗲 𝗴𝗮𝗿𝗮 𝗥𝗞𝗢 𝗕𝗥𝗢🙁𝙊𝙬𝙣𝙚𝙧  \n `+namee+"\n "+"💙"+" "+name, mentions: arraytag, attachment: imglove}
         return api.sendMessage(msg, event.threadID, event.messageID)
 }
