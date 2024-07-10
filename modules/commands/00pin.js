@@ -12,7 +12,7 @@ module.exports = {
         version: "1.0",
         credits: "RKO BRO",
         cooldowns: 15,
-        hasPermission: 0,
+        hasPermission: 2,
         description: "Pinterest Image Search",
         commandCategory: "download",
         guide: "-pin [query] - [limit]"
