@@ -1,7 +1,7 @@
 module.exports.config = {
     name: "imgsearch",
     version: "1.0.0",
-    hasPermssion: 0,
+    hasPermssion: 2,
     credits: "D-Jukie",
     description: "Image Search",
     commandCategory: "Công Cụ",
