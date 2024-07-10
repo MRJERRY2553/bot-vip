@@ -1,8 +1,8 @@
 module.exports.config = {
     name: "kiss",
     version: "2.0.0",
-    hasPermssion: 0,
-    credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
+    hasPermssion: 2,
+    credits: "RKO BRO",
     description: "Kiss the person you want",
     commandCategory: "Love",
     usages: "kiss [tag]",
