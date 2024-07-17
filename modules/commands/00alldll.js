@@ -47,8 +47,7 @@ module.exports = {
       ).data;
 
       fs.writeFileSync(filePath, Buffer.from(vid, "utf-8"));
-      const url = await tinyurl.shorten(data.result);
-      api.setMessageReaction("✅", event.messageID, (err) => {}, true);
+       api.setMessageReaction("✅", event.messageID, (err) => {}, true);
 
       api.sendMessage(
         {
