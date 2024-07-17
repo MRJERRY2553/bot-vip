@@ -24,7 +24,7 @@ module.exports = {
       axios: "",
       "fs-extra": "",
       path: "",
-     },
+    },
   },
 
   run: async function ({ api, args, event }) {
@@ -46,7 +46,7 @@ module.exports = {
       ).data;
 
       fs.writeFileSync(filePath, Buffer.from(vid, "utf-8"));
-       api.setMessageReaction("✅", event.messageID, (err) => {}, true);
+      api.setMessageReaction("✅", event.messageID, (err) => {}, true);
 
       api.sendMessage(
         {
