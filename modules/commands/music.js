@@ -33,14 +33,14 @@ async function downloadMusicFromYoutube(link, path) {
   return returnPromise
 }
 module.exports.config = {
-    name: "music33",
+    name: "music",
     version: "1.0.0",
     hasPermssion: 0,
     credits: "D-Jukie",
-    description: "Phát nhạc thông qua link YouTube hoặc từ khoá tìm kiếm",
-    commandCategory: "music",
+    description: "Play music through YouTube links or search keywords",
+    commandCategory: "What does it do?",
     usages: "[searchMusic]",
-    cooldowns: 150
+    cooldowns: 0
 }
 
 module.exports.handleReply = async function ({ api, event, handleReply }) {
@@ -51,13 +51,13 @@ module.exports.handleReply = async function ({ api, event, handleReply }) {
     try {
         var path = `${__dirname}/cache/sing-${event.senderID}.mp3`
         var data = await downloadMusicFromYoutube('https://www.youtube.com/watch?v=' + handleReply.link[event.body -1], path);
-        if (fs.statSync(path).size > 26214400) return api.sendMessage('Baby 20Mb se jyada hai isme ,koi aur try kro!', event.threadID, () => fs.unlinkSync(path), event.messageID);
+        if (fs.statSync(path).size > 26214400) return api.sendMessage('Unable to send file. Please select another song!', event.threadID, () => fs.unlinkSync(path), event.messageID);
         api.unsendMessage(handleReply.messageID)
         return api.sendMessage({ 
-            body: `🎶=====「 𝐌𝐔𝐒𝐈𝐂 」=====️🎶\n━━━━━━━━━━━━━━\n📌 → 𝗧𝗶𝘁𝗹𝗲: ${data.title} ( ${this.convertHMS(data.dur)} )\n📆 → 𝗟𝗮𝘂𝗻𝗰𝗵 𝗗𝗮𝘁𝗲 ✔️: ${data.uploadDate}\n📻 → 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: ${data.author} ( ${data.sub} )\n👀 → 𝗩𝗶𝗲𝘄𝘀 𝗥𝗲𝗮𝗹𝘁𝗶𝗺𝗲: ${data.viewCount} 𝘃𝗶𝗲𝘄\n❤️ → 𝗟𝗶𝗸𝗲𝘀 𝗥𝗲𝗮𝗹𝘁𝗶𝗺𝗲: ${data.likes}\n🔗 →  𝗟𝗶𝗻𝗸 𝗬𝗧: https://www.y2mate.com/youtube/${handleReply.link[event.body - 1]}\n⏳ → 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗬𝗼𝘂𝗿 𝗠𝘂𝘀𝗶𝗰 🥰: ${Math.floor((Date.now()- data.timestart)/1000)}\n ❤️𝗣𝗹𝗲𝗮𝘀𝗲 𝗪𝗮𝗶𝘁 150 𝗦𝗲𝗰(s) 𝗙𝗼𝗿 𝗡𝗲𝘅𝘁 𝗦𝗼𝗻𝗴 \n 𝗘𝗻𝗷𝗼𝘆 𝗧𝗵𝗲 𝗠𝘂𝘀𝗶𝗰 🥰\n======= [ ${time} ] =======`,
+            body: `🎶=====「 𝐌𝐔𝐒𝐈𝐂 」=====️🎶\n━━━━━━━━━━━━━━\n📌 → 𝗧𝗶𝘁𝗹𝗲: ${data.title} ( ${this.convertHMS(data.dur)} )\n📆 → 𝗟𝗮𝘂𝗻𝗰𝗵 𝗗𝗮𝘁𝗲 ✔️: ${data.uploadDate}\n📻 → 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: ${data.author} ( ${data.sub} )\n👀 → 𝗩𝗶𝗲𝘄𝘀 𝗥𝗲𝗮𝗹𝘁𝗶𝗺𝗲: ${data.viewCount} 𝘃𝗶𝗲𝘄\n❤️ → 𝗟𝗶𝗸𝗲𝘀 𝗥𝗲𝗮𝗹𝘁𝗶𝗺𝗲: ${data.likes}\n🔗 →  𝗟𝗶𝗻𝗸 𝗬𝗧: https://www.y2meta.com/vi/youtube/${handleReply.link[event.body - 1]}\n⏳ → 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗬𝗼𝘂𝗿 𝗠𝘂𝘀𝗶𝗰 🥰: ${Math.floor((Date.now()- data.timestart)/1000)} 𝗘𝗻𝗷𝗼𝘆 𝗧𝗵𝗲 𝗠𝘂𝘀𝗶𝗰 🥰\n======= [ ${time} ] =======`,
             attachment: fs.createReadStream(path)}, event.threadID, ()=> fs.unlinkSync(path), 
          event.messageID)
-
+            
     }
     catch (e) { return console.log(e) }
 }
@@ -73,7 +73,7 @@ module.exports.convertHMS = function(value) {
 }
 module.exports.run = async function ({ api, event, args }) {
   let axios = require('axios');
-    if (args.length == 0 || !args) return api.sendMessage('» Tootiya ho ka be song ka nam likh le', event.threadID, event.messageID);
+    if (args.length == 0 || !args) return api.sendMessage('» The search section must not be left blank!', event.threadID, event.messageID);
     const keywordSearch = args.join(" ");
     var path = `${__dirname}/cache/sing-${event.senderID}.mp3`
     if (fs.existsSync(path)) { 
@@ -82,12 +82,12 @@ module.exports.run = async function ({ api, event, args }) {
     if (args.join(" ").indexOf("https://") == 0) {
         try {
             var data = await downloadMusicFromYoutube(args.join(" "), path);
-            if (fs.statSync(path).size > 2621440000) return api.sendMessage('𝗞𝗵𝗼̂𝗻𝗴 𝘁𝗵𝗲̂̉ 𝗴𝘂̛̉𝗶 𝗳𝗶𝗹𝗲 𝗰𝗼́ 𝘁𝗵𝗼̛̀𝗶 𝗴𝗶𝗮𝗻 𝘁𝘂̛̀ 01:10:10 𝗩𝘂𝗶 𝗹𝗼̀𝗻𝗴 𝗰𝗵𝗼̣𝗻 𝗳𝗶𝗹𝗲 𝗸𝗵𝗼̂𝗻𝗴 𝗰𝗼́ 𝗮̂𝗺 𝘁𝗵𝗮𝗻𝗵.', event.threadID, () => fs.unlinkSync(path), event.messageID);
+            if (fs.statSync(path).size > 2621440000) return api.sendMessage('Cannot send file with time from 01:10:10 Please select file without sound.', event.threadID, () => fs.unlinkSync(path), event.messageID);
             return api.sendMessage({ 
-                body: `🎶=====「 𝐌𝐔𝐒𝐈𝐂 」=====️🎶\n━━━━━━━━━━━━━━\n📌 → 𝗧𝗶𝘁𝗹𝗲: ${data.title} ( ${this.convertHMS(data.dur)} )\n📆 → 𝗡𝗴𝗮̀𝘆 𝘁𝗮̉𝗶 𝗹𝗲̂𝗻: ${data.uploadDate}\n📻 → 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: ${data.author} ( ${data.sub} )\n👀 → 𝗟𝘂̛𝗼̛̣𝘁 𝘅𝗲𝗺: ${data.viewCount} 𝘃𝗶𝗲𝘄\n❤️ → 𝗟𝘂̛𝗼̛̣𝘁 𝘁𝗵𝗶́𝗰𝗵: ${data.likes}\n⏳ → 𝗧𝗵𝗼̛̀𝗶 𝗴𝗶𝗮𝗻 𝘅𝘂̛̉ 𝗹𝘆́: ${Math.floor((Date.now()- data.timestart)/1000)} 𝗴𝗶𝗮̂𝘆\n🔗 →  𝗟𝗶𝗻𝗸 𝘁𝗮̉𝗶: https://www.y2meta.com/vi/youtube/${handleReply.link[event.body - 1]}\n======= [ ${time} ] =======`,
+                body: `🎶=====「 𝐌𝐔𝐒𝐈𝐂 」=====️🎶\n━━━━━━━━━━━━━━\n📌 → 𝗧𝗶𝘁𝗹𝗲: ${data.title} ( ${this.convertHMS(data.dur)} )\n📆 → Upload date: ${data.uploadDate}\n📻 → 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: ${data.author} ( ${data.sub} )\n👀 → Views: ${data.viewCount} 𝘃𝗶𝗲𝘄\n❤️ → Likes: ${data.likes}\n⏳ → Processing Time: ${Math.floor((Date.now()- data.timestart)/1000)} second\n🔗 →  Download link: https://www.y2meta.com/vi/youtube/${handleReply.link[event.body - 1]}\n======= [ ${time} ] =======`,
                 attachment: fs.createReadStream(path)}, event.threadID, ()=> fs.unlinkSync(path), 
             event.messageID)
-
+            
         }
         catch (e) { return console.log(e) }
     } else {
@@ -132,7 +132,10 @@ module.exports.run = async function ({ api, event, args }) {
               link
             }), event.messageID);
           } catch(e) {
-            return api.sendMessage('Erorr !Try +Song!\n' + e, event.threadID, event.messageID);
+            return api.sendMessage('Something went wrong, please try again in a moment!!\n' + e, event.threadID, event.messageID);
+        }
+    }
+    }ssageID);
         }
     }
     }
