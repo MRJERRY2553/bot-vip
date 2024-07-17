@@ -1,6 +1,7 @@
 const axios = require("axios");
 const fs = require("fs-extra");
 const path = require("path");
+const tinyurl = require("tinyurl");
 const baseApiUrl = async () => {
   const base = await axios.get(
     `https://raw.githubusercontent.com/Blankid018/D1PT0/main/baseApiUrl.json`,
@@ -14,16 +15,19 @@ module.exports = {
     version: "1.0.1",
     credits: "Dipto",
     cooldowns: 6,
-    hasPermission: 0,
+    hasPermssion: 0,
     description:
       "𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝘃𝗶𝗱𝗲𝗼 𝗳𝗿𝗼𝗺 𝘁𝗶𝗸𝘁𝗼𝗸, 𝗳𝗮𝗰𝗲𝗯𝗼𝗼𝗸, 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺, 𝗬𝗼𝘂𝗧𝘂𝗯𝗲, 𝗮𝗻𝗱 𝗺𝗼𝗿𝗲",
-    commandCategory: "𝗠𝗘𝗗𝗜𝗔",
+    category: "𝗠𝗘𝗗𝗜𝗔",
+    commandCategory: "media",
     usages: "[video_link]",
     usePrefix: true,
+    Prefix: true,
     dependencies: {
       axios: "",
       "fs-extra": "",
       path: "",
+      tinyurl: "",
     },
   },
 
@@ -46,11 +50,12 @@ module.exports = {
       ).data;
 
       fs.writeFileSync(filePath, Buffer.from(vid, "utf-8"));
+      const url = await tinyurl.shorten(data.result);
       api.setMessageReaction("✅", event.messageID, (err) => {}, true);
 
       api.sendMessage(
         {
-          body: `${data.cp || null}`,
+          body: `${data.cp || null}\n✅ | Link: ${url || null}`,
           attachment: fs.createReadStream(filePath),
         },
         event.threadID,
