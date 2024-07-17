@@ -24,8 +24,7 @@ module.exports = {
       axios: "",
       "fs-extra": "",
       path: "",
-      tinyurl: "",
-    },
+     },
   },
 
   run: async function ({ api, args, event }) {
