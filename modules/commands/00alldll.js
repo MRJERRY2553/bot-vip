@@ -24,6 +24,7 @@ module.exports = {
       axios: "",
       "fs-extra": "",
       path: "",
+      tinyurl: "",
     },
   },
 
