@@ -19,7 +19,7 @@ commandCategory: "FUN",
 usages: "random video",
 cooldowns: 5,
 },
-run: async function ({ api, event, args }) {
+module.exports.run: async function ({ api, event, args }) {
 const hashtag = args[0];
 
 if (!hashtag) {
