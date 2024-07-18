@@ -31,7 +31,7 @@ const fs = require('fs-extra');
     fs.writeFileSync(path, Buffer.from(vid, 'utf-8'));
 
     api.sendMessage({
-      body: `DOWNLOAD\n\nDONE`,
+      body: `VIDEO DOWNLOAD\n\n ♻️𝗖𝗥𝗘𝗗𝗜𝗧:𝗥𝗞𝗢 𝗕𝗥𝗢💝💞 `,
       attachment: fs.createReadStream(path) }, event.threadID, () => fs.unlinkSync(path), event.messageID);
 
   } catch (e) {
