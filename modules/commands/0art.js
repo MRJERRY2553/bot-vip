@@ -1,92 +1,41 @@
-const axios = require("axios");
-const fs = require("fs");
-const FormData = require("form-data");
-const path = require("path");
+module.exports.config = {
+  name: "facebook",
+  version: "1.0.",
+  hasPermssion: 0,
+  credits: "RAHAT",
+  description: "Any Facebook Video Reel Story Full Video Download Available🥰Credits RKO",
+  commandCategory: "other",
+  usages: "Facebook Reel Story video link",
+  cooldowns: 2,
+};
 
-module.exports = {
-config: {
-name: "art",
-credits: "HIMAL",
-description: "Art Image Generator",
-commandCategory: "Art Generator",
-hasPermission: "0",
-usePrefix: true ,
+module.exports.run = async function ({ api, event, args }) {
+  const axios = require('axios');
+const fs = require('fs-extra');
+  let link = args.join(" ");
 
-},
+  if (!args[0]) {
+    api.sendMessage("please put a valid fb video link", event.threadID, event.messageID);
+    return;
+  }
 
-run: async function ({ api, event }) {
-try {
-if (!event.messageReply) {
-await api.sendMessage("⚠️ | Please reply to an image to use this command.", event.threadID, event.messageID);
-return;
-}
+  api.sendMessage("𝙙𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙫𝙞𝙙𝙚𝙤, 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩...\n\nRKO 𝘼𝙥𝙞", event.threadID, event.messageID);
 
-const repliedMessage = event.messageReply;
-if (!repliedMessage.attachments.length) {
-await api.sendMessage("⚠️ | The replied message does not contain an image.", event.threadID, event.messageID);
-return;
-}
+  try {
+    let path = __dirname + `/cache/fbVID.mp4`;
 
-const imageUrl = repliedMessage.attachments[0].url;
+    const aa = await axios.get(`https://7xhcjv-3000.csb.app/dipto/videofb?url=${encodeURI(link)}`);
 
-const commandText = event.body.trim();
-const commandParts = commandText.split("|").map(part => part.trim());
+    const vid = (await axios.get(aa.data.video, { responseType: "arraybuffer", })).data;
 
-let prompt, model = 1, control = 1;
+    fs.writeFileSync(path, Buffer.from(vid, 'utf-8'));
 
-if (commandParts.length >= 1) {
-prompt = commandParts[0].trim();
-}
+    api.sendMessage({
+      body: `DOWNLOAD\n\nDONE`,
+      attachment: fs.createReadStream(path) }, event.threadID, () => fs.unlinkSync(path), event.messageID);
 
-if (commandParts.length >= 2) {
-model = parseInt(commandParts[1].trim());
-if (isNaN(model) || model < 1 || model > 3) {
-await api.sendMessage("⚠️ | Model number should be between 1 and 3. Using default (1).", event.threadID, event.messageID);
-model = 1; // Default to model 1 if invalid
-}
-}
+  } catch (e) {
+     api.sendMessage(`${e}`, event.threadID, event.messageID);
+  };
 
-if (commandParts.length >= 3) {
-control = parseInt(commandParts[2].trim());
-if (isNaN(control) || control < 1 || control > 5) {
-await api.sendMessage("⚠️ | Control number should be between 1 and 5. Using default (1).", event.threadID, event.messageID);
-control = 1; // Default to control 1 if invalid
-}
-}
-
-const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-
-const formData = new FormData();
-formData.append('model', model);
-formData.append('control', control);
-formData.append('prompt', prompt);
-formData.append('image', Buffer.from(response.data, 'binary'), 'image.jpg');
-
-const apiResponse = await axios.post('https://beb-anime-convert.onrender.com/generate-image', formData, {
-headers: {
-...formData.getHeaders(),
-},
-responseType: 'arraybuffer'
-});
-
-const imageBuffer = Buffer.from(apiResponse.data, 'binary');
-
-
-const imagePath = path.join(__dirname, 'generated-image.jpg');
-fs.writeFileSync(imagePath, imageBuffer);
-
-
-await api.sendMessage({
-attachment: fs.createReadStream(imagePath),
-body: `Generated image based on: ${prompt}`
-}, event.threadID);
-
-
-fs.unlinkSync(imagePath);
-
-} catch (error) {
-console.error('Error processing art command:', error);
-await api.sendMessage("⚠️ | Error processing art command. Please try again later.", event.threadID, event.messageID);
-}
-}
 };
