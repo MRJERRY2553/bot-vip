@@ -5,11 +5,12 @@ const path = require("path");
 module.exports = {
 config: {
 name: "wsq",
-credits: "Vex_Kshitiz",
+credits: "RKO BRO",
 version: "2.0",
 cooldowns: 10,
 hasPermission: 0,
-description: "Get random wsq video" 
+usePrefix: "true",
+description: "Get random wsq video",
 commandCategory: "fun",
 usages: "shoti",
 },
