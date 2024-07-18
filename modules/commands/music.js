@@ -1,95 +1,77 @@
+const axios = require("axios");
+const fs = require("fs-extra");
+const ytdl = require("ytdl-core");
+const yts = require("yt-search");
+
 module.exports.config = {
-  name: "music",
-  version: "1.0.0",
-  hasPermssion: 0,
-  credits: "SaikiDesu",
-  description: "Play music from youtube",
-  commandCategory: "utility",
-  usages: "[title]",
-  cooldowns: 10,
-  dependencies: {
-            
-  }
+    name: "music",
+    version: "1.0.0",
+    hasPermssion: 0,
+    credits: "Jonell Magallanes",
+    description: "Play a music",
+    commandCategory: "Utility",
+    usages: "music (search)",
+    usePrefix: false,
+    cooldowns: 30,
 };
 
-module.exports.run = async({api, event}) => {
-	const axios = require("axios");
-    const fs = require("fs-extra");
-    const Innertube = require("youtubei.js");
-    const request = require("request");
-    let input = event.body;
-    
-    var text = input;     text = text.substring(7)
-let data = input.split(" ");
-  
-if (data.length < 2) {               return api.sendMessage("⚠️Please put a title or name of the music.", event.threadID);
-}
-  
+module.exports.run = async function ({ api, event }) {
+    const input = event.body;
+    const text = input.substring(12);
+    const data = input.split(" ");
 
-data.shift()
-
-
-  const youtube = await new Innertube();
- 
-  const search = await youtube.search(text);
-if (search.videos[0] === undefined){
-api.sendMessage("Error: Invalid request.",event.threadID,event.messageID)
-api.setMessageReaction("❎", event.messageID, (err) => {}, true)
-}else{
-api.sendMessage(`🔎Searching for "${text}"...`,  event.threadID,event.messageID);
-api.setMessageReaction("✅", event.messageID, (err) => {}, true)
-var timeleft = 3;
-var downloadTimer = setInterval(function(){
-  if(timeleft <= 0){
-    clearInterval(downloadTimer);
-
+    if (data.length < 2) {
+        return api.sendMessage("Please put a song", event.threadID);
     }
-  timeleft -= 1;
-}, 1000);
-  const stream = youtube.download(search.videos[0].id, {
-    format: 'mp4',
-    type: 'audio',
-    audioQuality: 'lowest',
-    loudnessDB: '20',
-    audioBitrate: '320',
-    fps: '30'
-  });
-  
-stream.pipe(fs.createWriteStream(__dirname + `/cache/${search.videos[0].title}.mp3`))
 
+    data.shift();
+    const song = data.join(" ");
 
-  stream.on('start', () => {
-    console.info('[DOWNLOADER]', 'Starting download now!');
-  }); 
-  stream.on('info', (info) => {
-    console.info('[DOWNLOADER]',`Downloading ${info.video_details.title} by ${info.video_details.metadata.channel_name}`);
-    console.log(info)
-  });
+    try {
+        api.sendMessage(`Finding "${song}". Please wait...`, event.threadID);
 
-  
-  stream.on('end', () => {
-  // process.stdout.clearLine();
-  // process.stdout.cursorTo(0);
-    console.info(`[DOWNLOADER] Downloaded`)
-    
-    
-    var message = {
-          body:("Here's your music, enjoy!🥰\n\nTitle: "+search.videos[0].title),
-         attachment:[ 
-fs.createReadStream(__dirname + `/cache/${search.videos[0].title}.mp3`)]}
-           api.sendMessage(message, event.threadID,event.messageID);
-  }); 
-stream.on('error', (err)=> console.error('[ERROR]',err))
+        const searchResults = await yts(song);
 
-         stream.on('end', async () => {  
-           
-           if (fs.existsSync(__dirname + `/cache/${search.videos[0].title}.mp3`)) {
-                                    fs.unlink(__dirname + `/cache/${search.videos[0].title}.mp3`, function (err) {
-                                  if (err) console.log(err);                                        
-                                  console.log(__dirname + `/cache/${search.videos[0].title}.mp3 is deleted!`);
-                                                        });
-                                                     }
-             })
-}
-      } 
-                                     
+        if (!searchResults || !searchResults.videos || searchResults.videos.length === 0) {
+            return api.sendMessage("Error: No videos found.", event.threadID, event.messageID);
+        }
+
+        const video = searchResults.videos[0];
+        const videoUrl = video.url;
+
+        const stream = ytdl(videoUrl, { filter: "audioonly" });
+
+        const fileName = `${event.senderID}.mp3`;
+        const filePath = __dirname + `/cache/${fileName}`;
+
+        stream.pipe(fs.createWriteStream(filePath));
+
+        stream.on('response', () => {
+            console.info('[DOWNLOADER]', 'Starting download now!');
+        });
+
+        stream.on('info', (info) => {
+            console.info('[DOWNLOADER]', `Downloading ${info.videoDetails.title} by ${info.videoDetails.author.name}`);
+        });
+
+        stream.on('end', () => {
+            console.info('[DOWNLOADER] Downloaded');
+
+            if (fs.statSync(filePath).size > 26214400) {
+                fs.unlinkSync(filePath);
+                return api.sendMessage('[ERR] The file could not be sent because it is larger than 25MB.', event.threadID);
+            }
+
+            const message = {
+                body: `Here's your music, enjoy!🥰\n\nTitle: ${video.title}\nArtist: ${video.author.name}`,
+                attachment: fs.createReadStream(filePath)
+            };
+            api.sendMessage(message, event.threadID, () => {
+                fs.unlinkSync(filePath);
+            });
+        });
+    } catch (error) {
+        console.error('[ERROR]', error);
+        api.sendMessage('An error occurred while processing the command.', event.threadID);
+    }
+};
