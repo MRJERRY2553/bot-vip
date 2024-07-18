@@ -9,7 +9,7 @@ module.exports.config = {
   cooldowns: 2,
 };
 
-module.exports 😒.run = async function ({ api, event, args }) {
+module.exports .run = async function ({ api, event, args }) {
   const axios = require('axios');
 const fs = require('fs-extra');
   let link = args.join(" ");
