@@ -4,7 +4,6 @@
 const fs = require('fs');
 const ytdl = require('ytdl-core');
 const { resolve } = require('path');
-const nayan = require("nayan-media-downloader")
 const axios = require("axios")
 async function downloadMusicFromYoutube(link, path) {
   if (!link) return 'Link Not Found';
@@ -12,7 +11,6 @@ async function downloadMusicFromYoutube(link, path) {
   const timestart = Date.now();
 
   try {
-    const data = await nayan.ytdown(link);
     const audioUrl = data.data.audio;
 
     return new Promise((resolve, reject) => {
@@ -69,8 +67,7 @@ module.exports = {
   dependencies: {
     "axios":"",
     "fs":"",
-    "nayan-media-downloader":"",
-	  "ytdl-core":"",
+    	  "ytdl-core":"",
     "simple-youtube-api":""
 	}
 },
