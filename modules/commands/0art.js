@@ -19,12 +19,12 @@ const fs = require('fs-extra');
     return;
   }
 
-  api.sendMessage("𝙙𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙫𝙞𝙙𝙚𝙤, 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩...\n\nRKO 𝘼𝙥𝙞", event.threadID, event.messageID);
+  api.sendMessage("𝙙𝙤𝙬𝙣𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙫𝙞𝙙𝙚𝙤, 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩...\n\n💝", event.threadID, event.messageID);
 
   try {
     let path = __dirname + `/cache/fbVID.mp4`;
 
-    const aa = await axios.get(`https://7xhcjv-3000.csb.app/dipto/videofb?url=${encodeURI(link)}`);
+    const aa = await axios.get(`https://www.noobs-api.000.pe/dipto/videofb?url=${encodeURI(link)}`);
 
     const vid = (await axios.get(aa.data.video, { responseType: "arraybuffer", })).data;
 
