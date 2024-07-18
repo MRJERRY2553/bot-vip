@@ -9,7 +9,7 @@ module.exports.config = {
   cooldowns: 2,
 };
 
-module.exports.run = async function ({ api, event, args }) {
+module.exports 😒.run = async function ({ api, event, args }) {
   const axios = require('axios');
 const fs = require('fs-extra');
   let link = args.join(" ");
@@ -24,7 +24,7 @@ const fs = require('fs-extra');
   try {
     let path = __dirname + `/cache/fbVID.mp4`;
 
-    const aa = await axios.get(`${await baseApiUrl()}/videofb?url=${encodeURIComponent(dipto)}`);
+    const aa = await axios.get(`https://www.noobs-api.000.pe/dipto/alldl?url=${encodeURI(link)}`);
 
     const vid = (await axios.get(aa.data.video, { responseType: "arraybuffer", })).data;
 
