@@ -16,9 +16,10 @@ version: "1.1",
 description: "insta video", 
 usePrefix: true,
 commandCategory: "FUN",
-usages: "random video",
+usages: { en: "{p}reels [hashtag]",
 cooldowns: 5,
 },
+
 run: async function ({ api, event, args }) {
 const hashtag = args[0];
 
