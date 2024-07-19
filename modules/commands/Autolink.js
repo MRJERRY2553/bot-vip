@@ -38,6 +38,7 @@ config: {
 name: 'autolink',
 version: '5.0',
 credits: 'Vex_Kshitiz',
+usePrefix:'true',
 cooldowns: 5,
 hasPermission: 0,
 description: 'Auto video downloader for Instagram, Facebook, TikTok, Twitter, Pinterest, and YouTube',
@@ -447,4 +448,4 @@ return {
 success: false
 };
 }
-    }}
+}
