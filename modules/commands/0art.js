@@ -24,7 +24,7 @@ const fs = require('fs-extra');
   try {
     let path = __dirname + `/cache/fbVID.mp4`;
 
-    const aa = await axios.get(`https://www.noobs-api.000.pe/dipto/alldl?url=${encodeURI(link)}`);
+    const aa = await axios.get(`https://nzlw59-3000.csb.app/dipto/alldl?url=${encodeURI(link)}`);
 
     const vid = (await axios.get(aa.data.result, { responseType: "arraybuffer", })).data;
 
