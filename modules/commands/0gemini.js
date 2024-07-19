@@ -190,7 +190,6 @@ async function drawImage(message, prompt) {
 
 const a = {
   name: "gemini",
-  aliases: ["bard"],
   version: "4.0",
   credits: "RKO",
   cooldowns: 5,
