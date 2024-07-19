@@ -194,6 +194,8 @@ const a = {
   credits: "RKO",
   cooldowns: 5,
   hasPermission: 0,
+  usePrefix:'true',
+  cooldowns:'5',
   description: "Chat with gemini",
   commandCategory: "ai",
   usages: {
