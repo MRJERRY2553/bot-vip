@@ -26,7 +26,7 @@ module.exports.handleReply = async function ({ api, event, handleReply }) {
     const reply = event.body.toLowerCase();
     if (isNaN(reply)) {
       const response = await axios.get(
-        `${await baseApiUrl()}/gemini2?text=${encodeURIComponent(reply)}&senderID=${uid}`,
+        `https://gemini-ai-pearl-two.vercel.app/kshitiz?prompt=${encodeURIComponent(c)}&uid=${d}&apikey=kshitiz`,
       );
       const ok = response.data.response;
       await api.sendMessage(
@@ -60,7 +60,7 @@ module.exports.run = async function ({ api, args, event }) {
     }
     if (dipto) {
       const response = await axios.get(
-        `${await baseApiUrl()}/gemini2?text=${encodeURIComponent(dipto)}&senderID=${uid}`,
+        `https://sandipbaruwal.onrender.com/gemini2?prompt=${encodeURIComponent(prompt)}&url=${encodeURIComponent(photoUrl)}`,
       );
       const mg = response.data.response;
       await api.sendMessage(
