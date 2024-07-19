@@ -15,7 +15,7 @@ commandCategory: "fun",
 usages: "shoti",
 },
 
-run: async function ({ api, event, args, message }) {
+module.exports.run= async function ({ api, event, args, message }) {
 api.setMessageReaction("🕐", event.messageID, (err) => {}, true);
 
 try {
