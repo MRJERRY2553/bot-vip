@@ -1,70 +1,43 @@
-const axios = require("axios");
-const fs = require("fs-extra");
+.const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
 
 module.exports = {
 config: {
-name: "fbdl",
+name: "lofianime",
+credits: "RKO BRO",
 version: "1.0",
-credits: "kshitiz",
 cooldowns: 5,
 hasPermission: 0,
-description: "Download video or audio from Facebook",
-commandCategory: "download",
-usages: "{pn}fbget [audio/video link]",
+description: "Get aesthetic lo-fi anime videos",
+commandCategory: "fun",
+usages: "{p}lofianime",
 },
-run: async function ({ api, event, args }) {
-try {
-if (args[0] === "audio") {
-api.sendMessage(`Processing request!!`, event.threadID, (err, info) => {
-setTimeout(() => {
-api.unsendMessage(info.messageID);
-}, 100);
-}, event.messageID);
 
-const path = __dirname + `/cache/2.mp3`;
-let audioData = (await axios.get(event.attachments[0].playableUrl, { responseType: "arraybuffer" })).data;
-fs.writeFileSync(path, Buffer.from(audioData, "binary"));
-
-return api.sendMessage(
-{
-body: `Here is your request ?`,
-attachment: fs.createReadStream(path),
-},
-event.threadID,
-() => fs.unlinkSync(path),
-event.messageID
-);
-}
-} catch (error) {
-console.error(error);
-return api.sendMessage(`Unable to process the request`, event.threadID, event.messageID);
-}
+run: async function ({ api, event, args, message }) {
+api.setMessageReaction("🕐", event.messageID, (err) => {}, true);
 
 try {
-if (args[0] === "video") {
-api.sendMessage(`Processing request!!!`, event.threadID, (err, info) => {
-setTimeout(() => {
-api.unsendMessage(info.messageID);
-}, 100);
-}, event.messageID);
+const response = await axios.get(`https://lofi-anime-bq8f.onrender.com/kshitiz`, { responseType: "stream" });
 
-const path1 = __dirname + `/cache/1.mp4`;
-let videoData = (await axios.get(event.attachments[0].playableUrl, { responseType: "arraybuffer" })).data;
-fs.writeFileSync(path1, Buffer.from(videoData, "binary"));
+const tempVideoPath = path.join(__dirname, "cache", `${Date.now()}.mp4`);
 
-return api.sendMessage(
-{
-body: `Your Request`,
-attachment: fs.createReadStream(path1),
-},
-event.threadID,
-() => fs.unlinkSync(path1),
-event.messageID
-);
-}
+const writer = fs.createWriteStream(tempVideoPath);
+response.data.pipe(writer);
+
+writer.on("finish", async () => {
+const stream = fs.createReadStream(tempVideoPath);
+
+message.reply({
+body: `Aesthetic Anime Video`,
+attachment: stream,
+});
+
+api.setMessageReaction("✅", event.messageID, (err) => {}, true);
+});
 } catch (error) {
 console.error(error);
-return api.sendMessage(`Unable to process request`, event.threadID, event.messageID);
+message.reply("Sorry, an error occurred while processing your request.");
 }
-},
+}
 };
