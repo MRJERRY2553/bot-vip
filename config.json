@@ -1,110 +1,36 @@
-[
-    {
-        "key": "dbln",
-        "value": "%7B%2261552243257847%22%3A%22PLvKWbbr%22%7D",
-        "domain": "facebook.com",
-        "path": "/login/device-based/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
+{
+    "language": "en",
+    "keyActive": "",
+    "DeveloperMode": false,
+    "autoCreateDB": true,
+    "allowInbox": false,
+    "autoClean": true,
+    "commandDisabled": [],
+    "eventDisabled": [],
+    "EMAIL": "",
+    "PASSWORD": "",
+    "OTPKEY": "",
+    "BOTNAME": "𝑱𝙀𝑹𝙍𝒀-𝑩𝙊𝑻💝♻️👑",
+    "PREFIX": "/",
+    "api":"https://www.noobs-api.000.pe/dipto",
+    "apis":"https://www.noobs-api.000.pe/dipto",
+    "baby":"https://nzlw59-3000.csb.app/dipto",
+    "ADMINBOT": [
+        "100068934695370",
+        ""
+    ],
+    "DATABASE": {
+        "sqlite": {
+            "storage": "data.sqlite"
+        }
     },
-    {
-        "key": "sb",
-        "value": "pCWxZoKYudyxM_7TI2PG6p3Q",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "wd",
-        "value": "1280x559",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "datr",
-        "value": "pCWxZsn7okNPfUUmeFTfBr9k",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "dpr",
-        "value": "1.5",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "ps_l",
-        "value": "1",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "ps_n",
-        "value": "1",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "locale",
-        "value": "en_GB",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "c_user",
-        "value": "61552243257847",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "xs",
-        "value": "50%3AKftxyhjjqKxk5A%3A2%3A1722938707%3A-1%3A405",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "fr",
-        "value": "0KUbbbyL7Xf3cPmK2.AWWvrwGyHdCB4FnhLyc2CxKVhmY.BmsSWk..AAA.0.0.BmsfVV.AWXjU7KW9s4",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
-    },
-    {
-        "key": "presence",
-        "value": "C%7B%22lm3%22%3A%22sc.7857824544309449%22%2C%22t3%22%3A%5B%5D%2C%22utc3%22%3A1722940372911%2C%22v%22%3A1%7D",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2024-08-06T10:33:01.083Z",
-        "lastAccessed": "2024-08-06T10:33:01.083Z"
+    "APPSTATEPATH": "appstate.json",
+    "FCAOption": {
+        "forceLogin": true,
+        "listenEvents": true,
+        "pauseLog": true,
+        "logLevel": "error",
+        "selfListen": false,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36"
     }
-]
+} 
