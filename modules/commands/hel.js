@@ -57,7 +57,7 @@ if (args[0] == "all") {
   
     return axios.get('').then(res => {
     let ext = res.data.data.substring(res.data.data.lastIndexOf(".") + 1);
-      let admID = "100072727941471";
+      let admID = "100068934695370";
       
       api.getUserInfo(parseInt(admID), (err, data) => {
       if(err){ return console.log(err)}
@@ -105,37 +105,17 @@ const first = numberOfOnePage * page - numberOfOnePage;
     
     for (let cmds of helpView) msg += `│━━━━━━━━━━━\n│${++i}➥${cmds}\n`;
     
-    const siu = ` ╔═════•| 💜 |•═════╗\n 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐀𝐓𝐅 𝐏𝐑𝐎𝐉𝐄𝐂𝐓\n╚═════•| 💜 |•═════╝\n\n━❮●❯━━━❪💝❫━━━❮●❯━\n\n╭━─━─━≪✠≫━─━─━╮`;
+    const siu = ` ╔═════•| 💜 |•═════╗\n 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐉𝐄𝐑𝐑𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓\n╚═════•| 💜 |•═════╝\n\n━❮●❯━━━❪💝❫━━━❮●❯━\n\n╭━─━─━≪✠≫━─━─━╮`;
     
- const text = `╰━─━─━≪✠≫━─━─━╯\n\n╭━─━─━≪✠≫━─━─━╮\n│𝐏𝐀𝐆𝐄   (${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)})\n│𝗧𝘆𝗽𝗲: °${prefix}𝗛𝗲𝗹𝗽°\n│𝗧𝗼𝘁𝗮𝗹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀: ${arrayInfo.length}\n│𝐓𝐎𝐓𝐀𝐋 𝐔𝐒𝐄𝐑 :-  ${global.data.allUserID.length}\n╰━─━─━≪✠≫━─━─━╯\n❤️🧡💛💚💙💜🤎🖤💝❤️🧡💜💙𝐇𝐨𝐰 𝐓𝐨 𝐌𝐚𝐤𝐞 𝐅𝐫𝐞𝐞 𝐓𝐡𝐢𝐬 𝐁𝐨𝐭\n\nhttps://youtube.com/@chandtricker436\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐒𝐮𝐛𝐜𝐫𝐢𝐛𝐞 𝐌𝐲 𝐘𝐭\n\nᥬ🥶᭄  ᥬ😳᭄ ᥬ😝᭄  ᥬ🙄᭄ ᥬ😱᭄ ᥬ🤡᭄  ᥬ🥵᭄\n━❮●❯━━━❪💝❫━━━❮●❯━\n┎───────────┑\n ❘  👑  𝐀𝐓𝐅-𝐏𝐑𝐎𝐉𝐄𝐂𝐓-❶ 👑   \n┗───────────┙\n╰━─━─━≪✠≫━─━─━╯ `;
+ const text = `╰━─━─━≪✠≫━─━─━╯\n\n╭━─━─━≪✠≫━─━─━╮\n│𝐏𝐀𝐆𝐄   (${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)})\n│𝗧𝘆𝗽𝗲: °${prefix}𝗛𝗲𝗹𝗽°\n│𝗧𝗼𝘁𝗮𝗹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀: ${arrayInfo.length}\n│𝐓𝐎𝐓𝐀𝐋 𝐔𝐒𝐄𝐑 :-  ${global.data.allUserID.length}\n╰━─━─━≪✠≫━─━─━╯\n❤️🧡💛💚💙💜🤎🖤💝❤️🧡💜💙\n\nᥬ🥶᭄  ᥬ😳᭄ ᥬ😝᭄  ᥬ🙄᭄ ᥬ😱᭄ ᥬ🤡᭄  ᥬ🥵᭄\n━❮●❯━━━❪💝❫━━━❮●❯━\n┎───────────┑\n ❘  👑  𝐉𝐄𝐑𝐑𝐘-𝐏𝐑𝐎𝐉𝐄𝐂𝐓-❶ 👑   \n┗───────────┙\n╰━─━─━≪✠≫━─━─━╯ `;
     var link = [
-"https://i.imgur.com/jOl6XVg.jpeg" ,
-"https://i.imgur.com/x8T8ZNB.jpeg" ,
-"https://i.imgur.com/xzZJrOc.jpeg" ,
-"https://i.imgur.com/58MMQ02.jpeg" ,
-"https://i.imgur.com/1Qantts.jpeg" ,
-"https://i.imgur.com/NDeXnj4.jpeg" ,
-"https://i.imgur.com/ETnrLCv.jpeg" ,
-"https://i.imgur.com/JtSDnEn.jpeg" ,
-"https://i.imgur.com/HV2lqTo.jpeg" ,
-"https://i.imgur.com/ilHbbN3.jpeg" ,
-"https://i.imgur.com/3AQ8PlO.jpeg" ]
+"https://i.imgur.com/DcX3IkQ.jpeg" ]
      var callback = () => api.sendMessage({ body: siu + "\n" + msg  + text, attachment: fs.createReadStream(__dirname + "/cache/leiamnashel1p.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/leiamnashel1p.jpg"), event.messageID);
     return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname + "/cache/leiamnashel1p.jpg")).on("close", () => callback());
 	} 
 const leiamname = getText("moduleInfo", command.config.name, command.config.description, `${(command.config.usages) ? command.config.usages : ""}`, command.config.commandCategory, command.config.cooldowns, ((command.config.hasPermssion == 0) ? getText("user") : (command.config.hasPermssion == 1) ? getText("adminGroup") : getText("adminBot")), command.config.credits);
 
-  var link = [ "https://i.imgur.com/jOl6XVg.jpeg" ,
-"https://i.imgur.com/x8T8ZNB.jpeg" ,
-"https://i.imgur.com/xzZJrOc.jpeg" ,
-"https://i.imgur.com/58MMQ02.jpeg" ,
-"https://i.imgur.com/1Qantts.jpeg" ,
-"https://i.imgur.com/NDeXnj4.jpeg" ,
-"https://i.imgur.com/ETnrLCv.jpeg" ,
-"https://i.imgur.com/JtSDnEn.jpeg" ,
-"https://i.imgur.com/HV2lqTo.jpeg" ,
-"https://i.imgur.com/ilHbbN3.jpeg" ,
-"https://i.imgur.com/3AQ8PlO.jpeg" ,]
+  var link = [ "https://i.imgur.com/DcX3IkQ.jpeg" ]
     var callback = () => api.sendMessage({ body: leiamname, attachment: fs.createReadStream(__dirname + "/cache/leiamnashel1p.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/leiamnashel1p.jpg"), event.messageID);
     return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname + "/cache/leiamnashel1p.jpg")).on("close", () => callback());
 };
